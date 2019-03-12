@@ -1,0 +1,68 @@
+<template>
+  <div>
+    <section class="section pb-0 bg-gradient-warning main-section">
+      <div class="container">
+        <div class="row row-grid align-items-center">
+          <div class="col-md-6 order-lg-2 ml-lg-auto">
+            <div class="position-relative pl-md-5">
+              <img src="../assets/img/ill/ill-2.svg" class="img-center img-fluid">
+            </div>
+          </div>
+          <div class="col-lg-6 order-lg-1 mt-0">
+            <div class="card bg-gradient-secondary shadow shadow-lg--hover mt-5">
+              <div class="card-body p-lg-5">
+                <h4 class="mb-1">LOGIN</h4>
+                <p class="mt-0">To access some of the coolest & awesome projects.</p>
+                <div class="form-group mt-5">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="ni ni-user-run"></i>
+                      </span>
+                    </div>
+                    <input class="form-control" placeholder="Your Email address" type="email">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">
+                        <i class="ni ni-email-83"></i>
+                      </span>
+                    </div>
+                    <input class="form-control" placeholder="Your Password" type="password">
+                  </div>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    class="btn btn-default btn-round btn-block btn-lg"
+                  >Login</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</template>
+
+
+
+<script>
+export default {
+  name: "Login"
+};
+</script>
+
+<style scoped>
+section.main-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
+
