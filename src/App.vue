@@ -2,22 +2,19 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <Landing msg="hello from landing component" />
-    <login/>
+    <router-view/>
+
+    <!-- <Landing /> -->
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// import Landing from './components/Landing.vue'
-import Login from './components/Login.vue'
+import Landing from './components/Landing.vue'
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld,
-    // Landing,
-    Login
+    Landing,
   }
 }
 </script>

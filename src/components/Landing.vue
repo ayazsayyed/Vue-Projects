@@ -1,6 +1,5 @@
 <template>
   <div class="landing">
-    <h1>{{ msg }}</h1>
     <header class="header-global">
     <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
       <div class="container">
@@ -103,11 +102,11 @@
               </a>
             </li>
             <li class="nav-item d-none d-lg-block ml-lg-4">
-              <a href="https://www.creative-tim.com/product/argon-design-system" target="_blank" class="btn btn-neutral btn-icon">
-                <span class="btn-inner--icon">
-                  <i class="fa fa-cloud-download mr-2"></i>
-                </span>
-                <span class="nav-link-inner--text">Download</span>
+              <a class="btn btn-neutral btn-icon">
+              <router-link to="/login">
+<span class="nav-link-inner--text">Login</span>
+              </router-link>
+                
               </a>
             </li>
           </ul>
@@ -143,7 +142,7 @@
                     <span class="btn-inner--icon"><i class="fa fa-code"></i></span>
                     <span class="btn-inner--text">Components</span>
                   </a>
-                  <a href="https://www.creative-tim.com/product/argon-design-system" class="btn btn-white btn-icon mb-3 mb-sm-0">
+                  <a href="#" class="btn btn-white btn-icon mb-3 mb-sm-0">
                     <span class="btn-inner--icon"><i class="ni ni-cloud-download-95"></i></span>
                     <span class="btn-inner--text">Download HTML</span>
                   </a>
@@ -481,7 +480,7 @@
                 <p class="lead text-white mt-3">I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture.</p>
               </div>
               <div class="col-lg-3 ml-lg-auto">
-                <a href="https://www.creative-tim.com/product/argon-design-system" class="btn btn-lg btn-block btn-white">Download HTML</a>
+                <a href="#" class="btn btn-lg btn-block btn-white">Download HTML</a>
               </div>
             </div>
           </div>
@@ -572,13 +571,13 @@
             </h2>
             <p class="lead">Cause if you do, it can be yours for FREE. Hit the button below to navigate to Creative Tim where you can find the Design System in HTML. Start a new project or give an old Bootstrap project a new look!</p>
             <div class="btn-wrapper">
-              <a href="https://www.creative-tim.com/product/argon-design-system" class="btn btn-primary mb-3 mb-sm-0">Download HTML</a>
+              <a href="#" class="btn btn-primary mb-3 mb-sm-0">Download HTML</a>
             </div>
             <div class="text-center">
               <h4 class="display-4 mb-5 mt-5">Available on these technologies</h4>
               <div class="row justify-content-center">
                 <div class="col-lg-2 col-4">
-                  <a href="https://www.creative-tim.com/product/argon-design-system" target="_blank" data-toggle="tooltip" data-original-title="Bootstrap 4 - Most popular front-end component library">
+                  <a href="#" target="_blank" data-toggle="tooltip" data-original-title="Bootstrap 4 - Most popular front-end component library">
                     <img src="https://s3.amazonaws.com/creativetim_bucket/tim_static_images/presentation-page/bootstrap.jpg" class="img-fluid">
                   </a>
                 </div>
@@ -686,13 +685,13 @@
 </template>
 
 <script>
+
 export default {
   name: 'Landing',
-  props: {
-    msg: String
-  }
+
 }
 </script>
+
 
 
 <style scoped>
