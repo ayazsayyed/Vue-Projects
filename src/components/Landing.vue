@@ -75,6 +75,14 @@
                 <a href="../examples/register.html" class="dropdown-item">Register</a>
               </div>
             </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <router-link to="/todo">
+                <i class="ni ni-collection d-lg-none"></i>
+                <span class="nav-link-inner--text">To-Do's</span>
+                </router-link>
+              </a>
+            </li>
           </ul>
           <ul class="navbar-nav align-items-lg-center ml-lg-auto">
             <li class="nav-item">

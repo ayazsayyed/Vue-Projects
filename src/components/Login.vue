@@ -10,8 +10,8 @@
           </div>
           <div class="col-lg-6 order-lg-1 mt-0">
             <div class="card bg-gradient-secondary shadow shadow-lg--hover mt-5">
-              <div class="card-body p-lg-5">
-                <h4 class="mb-1">LOGIN</h4>
+              <form class="card-body p-lg-5" @submit="login($event)">
+                <h4 class="mb-1">{{title}}</h4>
                 <p class="mt-0">To access some of the coolest & awesome projects.</p>
                 <div class="form-group mt-5">
                   <div class="input-group input-group-alternative">
@@ -20,7 +20,7 @@
                         <i class="ni ni-user-run"></i>
                       </span>
                     </div>
-                    <input class="form-control" placeholder="Your Email address" type="email">
+                    <input class="form-control" placeholder="Your Email address" type="email" v-model="userDetails.email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -30,16 +30,19 @@
                         <i class="ni ni-email-83"></i>
                       </span>
                     </div>
-                    <input class="form-control" placeholder="Your Password" type="password">
+                    <input class="form-control" placeholder="Your Password" type="password" v-model="userDetails.password">
                   </div>
                 </div>
                 <div>
                   <button
-                    type="button"
+                    type="submit"
                     class="btn btn-default btn-round btn-block btn-lg"
                   >Login</button>
                 </div>
-              </div>
+                <router-link to="/register" class="register-link">
+<span class="nav-link-inner--text">New Registeration? </span>
+              </router-link>
+              </form>
             </div>
           </div>
         </div>
@@ -52,7 +55,31 @@
 
 <script>
 export default {
-  name: "Login"
+  name: "Login",
+  data: function(){
+    return{
+      title:'LOGIN',
+      userDetails:{
+        email:null,
+        password:null
+      }
+    }
+  },
+  methods:{
+    login(e){
+      e.preventDefault();
+      console.log(this.userDetails)
+      if(!this.userDetails.email && !this.userDetails.password){
+        alert("invalid or no credentails")
+        return false
+      }
+      localStorage.setItem('vueUserDetails', JSON.stringify(this.userDetails))
+      setTimeout(()=>{
+        console.log("making null")
+        this.userDetails.email = this.userDetails.password = null
+        }, 2000)
+    }
+  }
 };
 </script>
 
@@ -62,6 +89,10 @@ section.main-section {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.register-link{
+  float: right;
+  margin-top: 15px;
 }
 </style>
 
