@@ -12,6 +12,7 @@
     "argon-design-system-free": "^1.0.1",
     "axios": "^0.18.0",
     "del": "^3.0.0",
+    "firebase": "^5.9.2",
     "gulp-cache": "^1.0.2",
     "gulp-csscomb": "^3.0.8",
     "gulp-cssnano": "^2.1.3",

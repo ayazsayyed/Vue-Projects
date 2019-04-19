@@ -32,6 +32,7 @@
 
 <script>
 import axios from "axios";
+import db from './firebase/firebaseInit'
 export default {
   name: "user-listing",
   data() {
@@ -50,6 +51,19 @@ export default {
   created() {
     console.log("Listing component loaded");
     this.getUserListing();
+    db.collection('users').where('fname', '==', 'Ayaz').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let newData = {
+            'fname': doc.data().fname,
+            'lname':doc.data().lname,
+            'contact_number':doc.data().contact_number,
+            'email':doc.data().email,
+            'password':doc.data().password
+          }
+
+          console.log(newData)
+        })
+      })
   }
 };
 </script>
