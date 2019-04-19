@@ -5,11 +5,7 @@
     <router-view/>
 
     <!-- <Landing /> -->
-    <!-- <Landing /> -->
   </div>
-
-
-  
 </template>
 
 <script>

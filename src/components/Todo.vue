@@ -6,7 +6,7 @@
     <div class="row" >
       <div class="col-md-6"><h1>{{title}}</h1></div>
       <div class="col-md-6 text-right">
-        <button class=" get-btn" @click="getTodos()"> Get Todos </button>
+        <button class=" get-btn" @click="getTodos()"> Fetch Todos </button>
       </div>
       <div class="col-md-4">
         <h6 class="count">Total : {{todos.length}}</h6>
@@ -19,13 +19,13 @@
       </div>
       <div class="col-md-12">
           <div class="form-group">
-            <input type="text"  name="newTodo" class="add-todo-field form-control" placeholder="Enter New To-Do" v-model.trim="newTodo.title" v-on:keydown.enter="addnewTodo($event)" autocomplete="off">
+            <input type="text"  name="newTodo" class="add-todo-field form-control" placeholder="Enter New To-Do"  v-on:keydown.enter="addnewTodo($event)" autocomplete="off">
           </div>       
       </div>
     </div>
     
-
      <ul id="todo-list">
+       <VuePerfectScrollbar class="scroll-area">
        <li :class="todo.completed ? 'done': 'undone'" v-for="(todo,key) in todos" :key="key">
          
          <span class="label">{{todo.title}}</span> 
@@ -38,17 +38,30 @@
            </button>
          </div>
        </li>
-       
+       </VuePerfectScrollbar>
     </ul>
+    <div class="todo-footer" v-if="todos.length >0">
+      <ul>
+        <div class="actions">
+           <button @click="clearTodos" type="button" aria-label="Delete" title="Delete" class="btn-picto">
+             Clear All
+             <i aria-hidden="true" class="material-icons">delete</i>
+           </button>
+         </div>
+      </ul>
+    </div>
   </main>
     </section>
   </div>
 </template>
 
 
-
 <script>
+import VuePerfectScrollbar from 'vue-perfect-scrollbar'
 export default {
+  components: {
+    VuePerfectScrollbar
+  },
   name: "Todo",
   data: function(){
     return{
@@ -58,22 +71,20 @@ export default {
       completedTodos:0,
       pendingTodos:0,
       item:0,
-      newTodo:{
-        completed:false,
-        id:201,
-        title:'',
-        userId:1
-      }
+      checkkAll:false
     }
   },
  
   methods:{
+    clearTodos(){
+      this.todos = [];
+      this.updateTodos()
+    },
     getTodos(){
       fetch('https://jsonplaceholder.typicode.com/todos')
        .then(response => response.json())
         .then((json) =>{
         this.todos = json;
-        
         this.updateTodos()
       })
     },
@@ -90,17 +101,26 @@ export default {
       
       if(this.todos[key].completed){
         this.todos[key].completed = false;
-        
       }else{
         this.todos[key].completed = true
       }
       this.updateTodos()
     },
     addnewTodo(e){
+      if(e.target.value.length>0){
+
+      
       e.preventDefault()
-      this.todos.push(this.newTodo);
-      this.newTodo.id ++;
-      setTimeout(()=> this.newTodo.title = '', 2000)
+      let newTodo = {
+        completed:false,
+        id:201,
+        title:e.target.value,
+        userId:1
+      }
+      this.todos.unshift(newTodo);
+      newTodo.id ++;
+      e.target.value = ''
+    }
     }
   }
 };
@@ -155,17 +175,19 @@ section.main-section {
 #todolist ul {
 	margin-top:2.6rem;
 	list-style:none;
+  padding: 0;
 }
 #todolist .todolist-move {
 	transition: transform 1s;
 }
 #todolist li {
 	display:flex;
-	margin:0 -3rem 4px;
-	padding:1.1rem 3rem;
+	margin-top: 5px;
+	padding:.7rem 1rem;
 	justify-content:space-between;
 	align-items:center;
 	background:rgba(255,255,255,0.1);
+  text-align: left;
 }
 
 #todolist .actions {
@@ -299,5 +321,33 @@ form input,
 .togglebutton-wrapper.togglebutton-checked .tooglebutton-box:before {
 	left:calc(100% - 4px - 16px);
 	opacity:1;
+}
+.scroll-area {
+  position: relative;
+  margin: auto;
+  width: 100%;
+  max-height: 450px;
+  min-height: 350px;
+}
+.scroll-area .ps__scrollbar-y-rail{
+  background: rgb(232, 232, 232);
+    opacity: 1;
+    width: 10px;
+    border-radius: 8px;
+}
+.todo-footer{
+  position: absolute;
+    bottom: 0;
+}
+.todo-footer ul{
+  display: flex;
+}
+.todo-footer .actions{
+  display: flex;
+}
+.todo-footer .actions button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>

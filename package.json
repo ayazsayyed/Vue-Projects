@@ -27,6 +27,7 @@
     "pump": "^3.0.0",
     "run-sequence": "^2.2.1",
     "vue": "^2.6.6",
+    "vue-perfect-scrollbar": "^0.1.0",
     "vue-router": "^3.0.2"
   },
   "devDependencies": {
