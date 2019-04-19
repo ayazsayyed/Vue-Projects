@@ -61,6 +61,9 @@
                 <div>
                   <button type="submit" class="btn btn-default btn-round btn-block btn-lg">Sign up</button>
                 </div>
+                <router-link to="/login" class="register-link">
+<span class="nav-link-inner--text">Already Registered? </span>
+              </router-link>
               </form>
             </div>
           </div>
@@ -116,6 +119,10 @@ section.main-section {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.register-link{
+  float: right;
+  margin-top: 15px;
 }
 </style>
 
