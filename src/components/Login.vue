@@ -20,7 +20,7 @@
                         <i class="ni ni-user-run"></i>
                       </span>
                     </div>
-                    <input class="form-control" placeholder="Your Email address" type="email" v-model="userDetails.email">
+                    <input class="form-control" placeholder="Your Email address" name="email" type="email">
                   </div>
                 </div>
                 <div class="form-group">
@@ -30,18 +30,15 @@
                         <i class="ni ni-email-83"></i>
                       </span>
                     </div>
-                    <input class="form-control" placeholder="Your Password" type="password" v-model="userDetails.password">
+                    <input class="form-control" placeholder="Your Password" name="password" type="password">
                   </div>
                 </div>
                 <div>
-                  <button
-                    type="submit"
-                    class="btn btn-default btn-round btn-block btn-lg"
-                  >Login</button>
+                  <button type="submit" class="btn btn-default btn-round btn-block btn-lg">Login</button>
                 </div>
                 <router-link to="/register" class="register-link">
-<span class="nav-link-inner--text">New Registeration? </span>
-              </router-link>
+                  <span class="nav-link-inner--text">New Registeration?</span>
+                </router-link>
               </form>
             </div>
           </div>
@@ -54,30 +51,40 @@
 
 
 <script>
+import VueRouter from "vue-router";
+import axios from "axios";
 export default {
   name: "Login",
-  data: function(){
-    return{
-      title:'LOGIN',
-      userDetails:{
-        email:null,
-        password:null
+  data: function() {
+    return {
+      title: "LOGIN",
+      userDetails: {
+        email: null,
+        password: null
       }
-    }
+    };
   },
-  methods:{
-    login(e){
+  methods: {
+    login(e) {
       e.preventDefault();
-      console.log(this.userDetails)
-      if(!this.userDetails.email && !this.userDetails.password){
-        alert("invalid or no credentails")
-        return false
-      }
-      localStorage.setItem('vueUserDetails', JSON.stringify(this.userDetails))
-      setTimeout(()=>{
-        console.log("making null")
-        this.userDetails.email = this.userDetails.password = null
-        }, 2000)
+      let email = e.target.elements.email.value;
+      let password = e.target.elements.password.value;
+      let login = () => {
+        let data = {
+          email: email,
+          password: password
+        };
+        axios
+          .post("/api/login", data)
+          .then(response => {
+            console.log("Logged in", response);
+            this.$router.push("/home");
+          })
+          .catch(errors => {
+            console.log("Cannots login", errors);
+          });
+      };
+      login();
     }
   }
 };
@@ -90,7 +97,7 @@ section.main-section {
   justify-content: center;
   align-items: center;
 }
-.register-link{
+.register-link {
   float: right;
   margin-top: 15px;
 }
