@@ -31,18 +31,7 @@ export default {
   data: function() {
     return {
       title: "Project - Management",
-      taskBoards: [
-        {
-          id: 1,
-          name: "Project Tracker",
-          description: "This is a project tracker board"
-        },
-        {
-          id: 2,
-          name: "Bupa Project",
-          description: "This is a project for Bupa"
-        }
-      ]
+      taskBoards:''
     };
   },
   methods: {},
@@ -53,7 +42,8 @@ export default {
     store
       .dispatch("fetchData")
       .then(something => {
-        console.log("something", something);
+        this.taskBoards = store.state.boards
+        
       })
       .catch(error => {
         // you got an error!

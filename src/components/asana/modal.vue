@@ -11,22 +11,23 @@
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Create New Board</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
+          <form  @submit.prevent="newTaskBoardForm">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Create New Board</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
                     <input
-                      type="email"
+                      type="text"
                       class="form-control form-control-alternative"
                       id="exampleFormControlInput1"
                       placeholder="name@example.com"
+                      v-model.trim="newTaskBoard.name"
                     >
                   </div>
                 </div>
@@ -36,14 +37,16 @@
                     id="exampleFormControlTextarea1"
                     rows="3"
                     placeholder="Write a large text here ..."
+                    v-model.trim="newTaskBoard.description"
                   ></textarea>
                 </div>
               </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-sm btn-default">Create</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -52,6 +55,7 @@
 
 <script>
 import { Bus } from "./utils/bus";
+import store from "./store/index";
 export default {
   name: "Modal",
   components: {
@@ -59,12 +63,31 @@ export default {
   },
   data: function() {
     return {
-      title: "Modal"
+      title: "Modal",
+      newTaskBoard:{
+        'name':null,
+        'description':null,
+        'id':1234
+      }
     };
   },
   methods: {
     showNewBoardPopup() {
       $("#genericPopup").modal("show");
+    },
+    newTaskBoardForm(e) {
+      console.log(this.newTaskBoard);
+      var payload = this.newTaskBoard
+      store
+      .dispatch("saveTaskBoard", payload)
+      .then(something => {
+        console.log('done');
+        
+        
+      })
+      .catch(error => {
+        // you got an error!
+      });
     }
   },
   mounted() {
