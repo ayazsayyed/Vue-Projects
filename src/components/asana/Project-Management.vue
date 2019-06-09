@@ -9,26 +9,12 @@
             <h3>Active Boards</h3>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-3">
-            <div class="boards-wrapper">
-              <div class="board card shadow shadow-lg--hover">
-                <div class="card-header">
-                  <div class="card-name"><h4> Card Name </h4></div>
-                  <div class="card-desc"><p> Card Description goes here </p></div>
-                </div>
-                <div class="card-footer">
-                  <div class="card-cta">
-                    <button class="btn  btn-sm btn-primary" type="button">View</button>
-                    <button class="btn  btn-sm btn-danger" type="button">Delete</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div>
+          <TaskBoard />
         </div>
       </main>
     </section>
+    <modal/>
   </div>
 </template>
 
@@ -36,11 +22,15 @@
 
 <script>
 import navbar from "./navbar";
+import modal from "./modal";
+import TaskBoard from "./TaskBoard";
 export default {
   name: "ProjectManagement",
 
   components: {
-    navbar
+    navbar,
+    modal,
+    TaskBoard
   },
   data: function() {
     return {
@@ -56,7 +46,7 @@ export default {
   height: 100vh;
   text-align: left;
 }
-#dashboard .container-fluid{
+#dashboard .container-fluid {
   height: 100%;
 }
 </style>

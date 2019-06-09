@@ -3,7 +3,7 @@
     <!-- Modal -->
     <div
       class="modal fade"
-      id="exampleModal"
+      id="genericPopup"
       tabindex="-1"
       role="dialog"
       aria-labelledby="exampleModalLabel"
@@ -12,15 +12,37 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Create New Board</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <input
+                      type="email"
+                      class="form-control form-control-alternative"
+                      id="exampleFormControlInput1"
+                      placeholder="name@example.com"
+                    >
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <textarea
+                    class="form-control form-control-alternative"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    placeholder="Write a large text here ..."
+                  ></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
@@ -42,7 +64,7 @@ export default {
   },
   methods: {
     showNewBoardPopup() {
-      console.log("open modal");
+      $("#genericPopup").modal("show");
     }
   },
   mounted() {

@@ -12,6 +12,7 @@ import PageNotFound from './components/Page404.vue'
 import UserManagement from './components/user-management.vue'
 import Dashboard from './components/projects/dashboard.vue'
 import ProjectManagement from './components/asana/Project-Management.vue'
+import store from './components/asana/store/index'
 
 
 Vue.config.productionTip = false
@@ -38,5 +39,6 @@ const router = new VueRouter({
 })
 new Vue({
   router,
+  store,
   render: h => h(App),
 }).$mount('#app')

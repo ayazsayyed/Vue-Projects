@@ -41,7 +41,7 @@
 
           <ul class="navbar-nav ml-lg-auto">
             <li class="nav-item">
-              <button class="btn btn-icon btn-3 btn-default" type="button" @click="showNewBoardPopup()">
+              <button class="btn btn-sm btn-icon btn-3 btn-default" type="button" @click="showNewBoardPopup()">
                 <span class="btn-inner--icon">
                   <i class="ni ni-fat-add"></i>
                 </span>
@@ -99,7 +99,7 @@ export default {
       showNewBoardPopup(){
           console.log('clicked');
           
-          Bus.$emit('new-board', 'hello') 
+          Bus.$emit("new-board", 'hello') 
       }
   }
 };
