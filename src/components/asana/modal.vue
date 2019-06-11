@@ -26,7 +26,7 @@
                       type="text"
                       class="form-control form-control-alternative"
                       id="exampleFormControlInput1"
-                      placeholder="name@example.com"
+                      placeholder="Board Name"
                       v-model.trim="newTaskBoard.name"
                     >
                   </div>
@@ -36,7 +36,7 @@
                     class="form-control form-control-alternative"
                     id="exampleFormControlTextarea1"
                     rows="3"
-                    placeholder="Write a large text here ..."
+                    placeholder="Board Description text here ..."
                     v-model.trim="newTaskBoard.description"
                   ></textarea>
                 </div>
@@ -65,9 +65,9 @@ export default {
     return {
       title: "Modal",
       newTaskBoard:{
-        'name':null,
-        'description':null,
-        'id':1234
+        name:null,
+        description:null,
+        id:1234
       }
     };
   },
@@ -77,12 +77,18 @@ export default {
     },
     newTaskBoardForm(e) {
       console.log(this.newTaskBoard);
-      var payload = this.newTaskBoard
+      var payload = {
+            id: this.newTaskBoard.id,
+            name: this.newTaskBoard.name,
+            description: this.newTaskBoard.description
+          };
       store
       .dispatch("saveTaskBoard", payload)
       .then(something => {
-        console.log('done');
-        
+        this.newTaskBoard.id = null
+        this.newTaskBoard.name = null
+        this.newTaskBoard.description = null
+        $("#genericPopup").modal("hide");
         
       })
       .catch(error => {
