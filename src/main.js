@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
+import VueSweetalert2 from 'vue-sweetalert2'
 import login from './components/Login.vue'
 import register from './components/Register.vue'
 import userList from './components/UserListing.vue'
@@ -17,6 +18,7 @@ import store from './components/asana/store/index'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
+Vue.use(VueSweetalert2);
 
 const routes = [
   { path:  '/', component: login },

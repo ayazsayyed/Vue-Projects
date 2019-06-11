@@ -12,4 +12,7 @@ export default {
     async saveTaskBoard({ commit }, payload) {
         commit("SAVE_TASKBOARD", payload)
     },
+    async archiveTaskBoard({ commit }, payload) {
+        commit("ARCHIVE_TASKBOARD", payload)
+      },
 }

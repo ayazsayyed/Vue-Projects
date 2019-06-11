@@ -8,8 +8,6 @@
 export default {
  name: "TaskListBoard",
   components:{
-      modal,
-      Bus
   },
   data: function() {
     return {

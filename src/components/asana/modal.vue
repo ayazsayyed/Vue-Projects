@@ -11,7 +11,7 @@
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <form  @submit.prevent="newTaskBoardForm">
+          <form @submit.prevent="newTaskBoardForm">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLabel">Create New Board</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -64,10 +64,10 @@ export default {
   data: function() {
     return {
       title: "Modal",
-      newTaskBoard:{
-        name:null,
-        description:null,
-        id:1234
+      newTaskBoard: {
+        name: null,
+        description: null,
+        id: 1234
       }
     };
   },
@@ -78,22 +78,24 @@ export default {
     newTaskBoardForm(e) {
       console.log(this.newTaskBoard);
       var payload = {
-            id: this.newTaskBoard.id,
-            name: this.newTaskBoard.name,
-            description: this.newTaskBoard.description
-          };
+        id: this.newTaskBoard.id,
+        name: this.newTaskBoard.name,
+        description: this.newTaskBoard.description
+      };
       store
-      .dispatch("saveTaskBoard", payload)
-      .then(something => {
-        this.newTaskBoard.id = null
-        this.newTaskBoard.name = null
-        this.newTaskBoard.description = null
-        $("#genericPopup").modal("hide");
-        
-      })
-      .catch(error => {
-        // you got an error!
-      });
+        .dispatch("saveTaskBoard", payload)
+        .then(something => {
+          this.resetfields()
+          $("#genericPopup").modal("hide");
+        })
+        .catch(error => {
+          // you got an error!
+        });
+    },
+    resetfields() {
+      this.newTaskBoard.id = null;
+      this.newTaskBoard.name = null;
+      this.newTaskBoard.description = null;
     }
   },
   mounted() {

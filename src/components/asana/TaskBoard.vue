@@ -15,11 +15,11 @@
             </div>
             <div class="card-desc">
               <p>
-                <input
+                <textarea
                   class="transparent-input form-control small"
-                  type="text"
+                  type="text" rows="1"
                   :value="taskBoard.description"
-                >
+                ></textarea>
               </p>
             </div>
           </div>
@@ -28,9 +28,9 @@
               <!-- <button class="btn btn-sm btn-primary" type="button">View</button> -->
               <router-link
                 class="btn btn-sm btn-primary"
-                :to="{ name: 'task-board', params: { id: '132165468' } }"
+                :to="{ path: '/project-management/dashboard' , params: { id: 1234 }}"
               >View</router-link>
-              <button class="btn btn-sm btn-danger" type="button">Delete</button>
+              <button class="btn btn-sm btn-danger" type="button" @click="deleteBoard(taskBoard)">Delete</button>
             </div>
           </div>
         </div>
@@ -41,6 +41,7 @@
 
 <script>
 import store from "./store/index";
+import { mapGetters, mapActions } from "vuex"
 export default {
   name: "TaskBoard",
   components: {},
@@ -50,7 +51,16 @@ export default {
       taskBoards: ""
     };
   },
-  methods: {},
+  methods: {
+    ...mapActions({
+      archiveTaskBoard: "archiveTaskBoard",
+    }),
+
+    deleteBoard(taskBoard){
+      this.archiveTaskBoard({ boardId: taskBoard.id })
+      
+    }
+  },
   mounted() {
     //   store.SET_INITIAL_DATA();
   },
@@ -85,5 +95,8 @@ export default {
 .transparent-input:hover,
 .transparent-input:focus {
   border: 1px solid rgba(202, 202, 202, 1);
+}
+textarea{
+  resize: none;
 }
 </style>
