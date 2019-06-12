@@ -17,8 +17,10 @@
               <p>
                 <textarea
                   class="transparent-input form-control small"
-                  type="text" rows="1"
+                  type="text"
+                  rows="1"
                   :value="taskBoard.description"
+                  @keydown="autoGrow($event)"
                 ></textarea>
               </p>
             </div>
@@ -30,7 +32,11 @@
                 class="btn btn-sm btn-primary"
                 :to="{ path: '/project-management/dashboard' , params: { id: 1234 }}"
               >View</router-link>
-              <button class="btn btn-sm btn-danger" type="button" @click="deleteBoard(taskBoard)">Delete</button>
+              <button
+                class="btn btn-sm btn-danger"
+                type="button"
+                @click="deleteBoard(taskBoard)"
+              >Delete</button>
             </div>
           </div>
         </div>
@@ -41,7 +47,7 @@
 
 <script>
 import store from "./store/index";
-import { mapGetters, mapActions } from "vuex"
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "TaskBoard",
   components: {},
@@ -53,12 +59,15 @@ export default {
   },
   methods: {
     ...mapActions({
-      archiveTaskBoard: "archiveTaskBoard",
+      archiveTaskBoard: "archiveTaskBoard"
     }),
 
-    deleteBoard(taskBoard){
-      this.archiveTaskBoard({ boardId: taskBoard.id })
-      
+    autoGrow(e) {
+      console.log(e.target);
+      e.target.style.height = e.target.scrollHeight + "px";
+    },
+    deleteBoard(taskBoard) {
+      this.archiveTaskBoard({ boardId: taskBoard.id });
     }
   },
   mounted() {
@@ -96,7 +105,10 @@ export default {
 .transparent-input:focus {
   border: 1px solid rgba(202, 202, 202, 1);
 }
-textarea{
+textarea {
   resize: none;
+  overflow: hidden;
+  min-height: 50px;
+  max-height: 150px;
 }
 </style>

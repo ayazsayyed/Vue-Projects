@@ -85,7 +85,7 @@ export default {
       store
         .dispatch("saveTaskBoard", payload)
         .then(something => {
-          this.resetfields()
+          this.resetfields();
           $("#genericPopup").modal("hide");
         })
         .catch(error => {

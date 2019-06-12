@@ -11,6 +11,7 @@
         </div>
         <div>
           <TaskBoard />
+          <ArchivedBoard />
         </div>
       </main>
     </section>
@@ -24,13 +25,15 @@
 import navbar from "./navbar";
 import modal from "./modal";
 import TaskBoard from "./TaskBoard";
+import ArchivedBoard from "./ArchivedBoard";
 export default {
   name: "ProjectManagement",
 
   components: {
     navbar,
     modal,
-    TaskBoard
+    TaskBoard,
+    ArchivedBoard
   },
   data: function() {
     return {
@@ -43,7 +46,7 @@ export default {
 <style scoped>
 #dashboard {
   /* background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important; */
-  height: 100vh;
+  
   text-align: left;
 }
 #dashboard .container-fluid {

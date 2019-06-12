@@ -27,7 +27,7 @@ export default {
           }).then(function() {
             Vue.swal(
               'Deleted!',
-              state.boards.splice(boardIdx, 1),
+              // state.boards.splice(boardIdx, 1),
               'Your file has been deleted.',
               'success'
             );
