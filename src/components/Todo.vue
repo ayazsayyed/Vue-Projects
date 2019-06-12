@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-wrapper">
     <section class="section pb-0 main-section bg-gradient-warning"  >
       
         <main class="container card shadow shadow-lg--hover mt-5" id="todolist">
@@ -9,13 +9,13 @@
         <button class=" get-btn" @click="getTodos()"> Fetch Todos </button>
       </div>
       <div class="col-md-4">
-        <h6 class="count">Total : {{todos.length}}</h6>
+        <h6 class="count total">Total : {{todos.length}}</h6>
       </div>
       <div class="col-md-4">
-        <h6 class="count">Completed : {{completedTodos.length}}</h6>
+        <h6 class="count completed">Completed : {{completedTodos.length}}</h6>
       </div>
       <div class="col-md-4">
-        <h6 class="count">Pending : {{pendingTodos.length}}</h6>
+        <h6 class="count pending">Pending : {{pendingTodos.length}}</h6>
       </div>
       <div class="col-md-12">
           <div class="form-group">
@@ -120,6 +120,7 @@ export default {
       this.todos.unshift(newTodo);
       newTodo.id ++;
       e.target.value = ''
+      this.updateTodos()
     }
     }
   }
@@ -127,9 +128,9 @@ export default {
 </script>
 <style scoped>
 section.main-section {
-  height: 100vh;
   display: flex;
   justify-content: center;
+  height: 100%;
 }
 .card-body {
   text-align: left;
@@ -141,6 +142,12 @@ section.main-section {
 .count{
   font-size:16px;
 }
+.count.completed{
+  text-align: center
+}
+.count.pending{
+  text-align: right;
+}
 #todolist {
 	margin:4rem auto;
 	padding:2rem 3rem 3rem;
@@ -148,6 +155,9 @@ section.main-section {
 	background:#FFF;
 	color:#fb6340 ;
 	box-shadow: 0 0 19px 10px rgba(100,100,100,.2)
+}
+#todolist .row{
+  text-align: left;
 }
 #todolist h1 {
     /*text-align:center;*/
@@ -349,5 +359,8 @@ form input,
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.main-wrapper{
+  height: 100%;
 }
 </style>
